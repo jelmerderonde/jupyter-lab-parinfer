@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/jelmerderonde/jupyter-lab-parinfer.svg?branch=master)](https://travis-ci.com/jelmerderonde/jupyter-lab-parinfer)
+
 # Jupyter Lab Parinfer
 
 jupyter-lab-parinfer is a [Jupyter Lab](https://jupyterlab.readthedocs.io/en/stable/index.html) Parinfer extension to enable [Parinfer](https://shaunlebron.github.io/parinfer/) (structural editing for Lisps) in Jupyter Code Cells.
