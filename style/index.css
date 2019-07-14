@@ -1,0 +1,5 @@
+/* Styles for Jupyter Lab Parinfer plugin */
+
+span.parinfer-paren-trail {
+  opacity: 0.4;
+}

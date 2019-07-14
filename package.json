@@ -1,0 +1,32 @@
+{
+  "name": "jupyter-lab-parinfer",
+  "version": "0.0.1",
+  "description": "Parinfer extension for Jupyter Lab",
+  "keywords": ["jupyterlab-extension", "parinfer"],
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./lib",
+    "dev": "npm install && shadow-cljs -A:dev watch plugin",
+    "build": "npm run clean && npm install && shadow-cljs release plugin"
+  },
+  "files": [
+    "index.js",
+    "lib/*.{js,js.map}",
+    "style/*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jelmerderonde/jupyter-lab-parinfer.git"
+  },
+  "author": "Jelmer de Ronde",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "@jupyterlab/cells": "^1.0.1",
+    "@jupyterlab/notebook": "^1.0.0",
+    "parinfer-codemirror": "^1.4.2"
+  },
+  "devDependencies": {},
+  "jupyterlab": {
+    "extension": true
+  }
+}

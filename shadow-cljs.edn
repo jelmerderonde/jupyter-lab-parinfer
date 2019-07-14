@@ -1,0 +1,9 @@
+{:deps true
+ :nrepl {:port 9000}
+ :socket-repl {:port 60606}
+ :builds {:plugin {:target :npm-module
+                   :output-dir "lib"
+                   :entries [jupyter-lab-parinfer]
+                   :runtime :browser}}}
+
+
