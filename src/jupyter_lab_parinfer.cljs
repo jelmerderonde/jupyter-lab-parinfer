@@ -6,7 +6,7 @@
 (defn activate-parinfer
   "Activates Parinfer for a Notebook cell,
   if it is not already activated."
-  [cell]
+  [^js cell]
   (let [codemirror (.. cell -editor -editor)]
     (if-not (.-__parinfer__ codemirror)
       (.init parinferCodeMirror codemirror)
@@ -27,21 +27,21 @@
 (defn handle-widget-change
   "Called each time the user switches to a new
   widget (notebook tab)."
-  [_ notebook-panel]
+  [_ ^js notebook-panel]
   (if notebook-panel
     (.connect (.. notebook-panel -content -modelContentChanged) handle-model-change)))
 
 (defn handle-active-cell-change
   "Called each time the active cell changes,
   and calls activate-parinfer if it is a CodeCell."
-  [_ cell]
+  [_ ^js cell]
   (when (and cell (= (type cell) CodeCell))
     (activate-parinfer cell)))
 
-(defn activate
+(defn ^:export activate
   "The activation function required for a
   Jupyter Lab extension."
-  [app notebook-tracker]
+  [app ^js notebook-tracker]
   (.connect (.-currentChanged notebook-tracker) handle-widget-change)
   (.connect (.-activeCellChanged notebook-tracker) handle-active-cell-change))
 

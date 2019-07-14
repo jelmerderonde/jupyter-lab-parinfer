@@ -4,6 +4,10 @@
  :builds {:plugin {:target :npm-module
                    :output-dir "lib"
                    :entries [jupyter-lab-parinfer]
-                   :runtime :browser}}}
+                   :runtime :browser
 
-
+                   :release {:compiler-options {:optimizations :advanced}
+                                                ;:source-map true
+                                                ;:pretty-print true
+                                                ;:pseudo-names true}
+                             :infer-externs :auto}}}}
