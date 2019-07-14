@@ -2,7 +2,10 @@
   "name": "jupyter-lab-parinfer",
   "version": "0.0.1",
   "description": "Parinfer extension for Jupyter Lab",
-  "keywords": ["jupyterlab-extension", "parinfer"],
+  "keywords": [
+    "jupyterlab-extension",
+    "parinfer"
+  ],
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./lib",
