@@ -3,6 +3,14 @@
             ["@jupyterlab/cells" :refer [CodeCell]]
             ["parinfer-codemirror" :as parinferCodeMirror]))
 
+(defn clojure-notebook?
+  "Checks if a notebook has clojure
+  as the default kernel language."
+  [^js notebook]
+  (if-let [model (.-model notebook)]
+    (let [language (.-defaultKernelLanguage model)]
+      (= language "clojure"))))
+
 (defn activate-parinfer
   "Activates Parinfer for a Notebook cell,
   if it is not already activated."
@@ -16,13 +24,11 @@
   "Called each time the Notebook model changes.
   calls activate-parinfer for all cells if the
   default language is \"clojure\"."
-  [notebook]
-  (when-let [model (.-model notebook)]
-    (let [language (.-defaultKernelLanguage model)]
-      (when (= language "clojure")
-        (let [cells (.-widgets notebook)]
-          (doseq [cell cells]
-            (activate-parinfer cell)))))))
+  [^js notebook]
+  (if (clojure-notebook? notebook)
+    (let [cells (.-widgets notebook)]
+      (doseq [cell cells]
+        (activate-parinfer cell)))))
 
 (defn handle-widget-change
   "Called each time the user switches to a new
@@ -33,10 +39,14 @@
 
 (defn handle-active-cell-change
   "Called each time the active cell changes,
-  and calls activate-parinfer if it is a CodeCell."
-  [_ ^js cell]
-  (when (and cell (= (type cell) CodeCell))
-    (activate-parinfer cell)))
+  and calls activate-parinfer if it is a CodeCell
+  in a clojure notebook."
+  [^js notebook-tracker ^js cell]
+  (if-let [notebook (.-currentWidget notebook-tracker)]
+    (when (and cell
+               (clojure-notebook? notebook)
+               (= (type cell) CodeCell))
+      (activate-parinfer cell))))
 
 (defn ^:export activate
   "The activation function required for a

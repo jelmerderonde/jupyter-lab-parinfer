@@ -1,6 +1,6 @@
 {
   "name": "jupyter-lab-parinfer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Parinfer extension for Jupyter Lab",
   "keywords": [
     "jupyterlab-extension",

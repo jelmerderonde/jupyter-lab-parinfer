@@ -2,3 +2,5 @@ node_modules
 .cpcache
 .shadow-cljs
 lib
+.nrepl-port
+.ipynb_checkpoints
